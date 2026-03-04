@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Music Festival Hub</title>
+
+<style>
+
+body{
+font-family:Arial;
+margin:0;
+background:#f4f4f4;
+}
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px;
+background:#111;
+color:white;
+flex-wrap:wrap;
+}
+
+nav a{
+color:white;
+margin:10px;
+text-decoration:none;
+cursor:pointer;
+}
+
+section{
+display:none;
+padding:40px;
+}
+
+.active{
+display:block;
+}
+
+.hero{
+text-align:center;
+background:#ff4c4c;
+color:white;
+padding:80px 20px;
+}
+
+.hero a{
+background:white;
+color:#ff4c4c;
+padding:12px 20px;
+text-decoration:none;
+border-radius:5px;
+display:inline-block;
+margin-top:20px;
+}
+
+.events{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.event-card{
+background:white;
+width:260px;
+margin:15px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+text-align:center;
+overflow:hidden;
+}
+
+.event-card img{
+width:100%;
+height:180px;
+object-fit:cover;
+}
+
+.event-card button{
+background:#ff4c4c;
+color:white;
+border:none;
+padding:10px 15px;
+margin-bottom:15px;
+border-radius:5px;
+cursor:pointer;
+width:80%;
+}
+
+.contact{
+text-align:center;
+}
+
+.contact input,
+.contact textarea{
+width:300px;
+max-width:90%;
+padding:10px;
+margin:10px;
+}
+
+.contact button{
+padding:10px 20px;
+background:#ff4c4c;
+color:white;
+border:none;
+}
+
+footer{
+background:#111;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+/* BOOKING MODAL */
+
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+justify-content:center;
+align-items:center;
+}
+
+.modal-content{
+background:white;
+padding:25px;
+border-radius:10px;
+width:300px;
+max-width:90%;
+text-align:center;
+}
+
+.modal-content input{
+width:90%;
+padding:10px;
+margin:10px 0;
+}
+
+.modal-content button{
+background:#ff4c4c;
+color:white;
+border:none;
+padding:10px;
+width:100%;
+}
+
+.close{
+cursor:pointer;
+float:right;
+font-size:20px;
+}
+
+@media(max-width:768px){
+
+header{
+flex-direction:column;
+}
+
+.events{
+flex-direction:column;
+align-items:center;
+}
+
+.event-card{
+width:90%;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Music Festival Hub</h1>
+<nav>
+<a onclick="showPage('home')">Home</a>
+<a onclick="showPage('events')">Events</a>
+<a onclick="showPage('contact')">Contact</a>
+</nav>
+</header>
+
+<!-- HOME -->
+
+<section id="home" class="active">
+
+<div class="hero">
+
+<h2>Welcome to Music Festival Hub</h2>
+
+<p>
+Music festivals celebrate creativity and bring thousands of fans
+together to enjoy live performances and unforgettable experiences.
+</p>
+
+<a onclick="showPage('events')">View Upcoming Events</a>
+
+</div>
+
+</section>
+
+<!-- EVENTS -->
+
+<section id="events">
+
+<h2 style="text-align:center">Upcoming Festivals</h2>
+
+<div class="events">
+
+<div class="event-card">
+<img src="https://images.unsplash.com/photo-1506157786151-b8491531f063">
+<h3>Maya Music Festival</h3>
+<p>Date: 20 April 2026</p>
+<p>Ticket: ₹4500</p>
+<button onclick="openBooking('Maya Music Festival','₹4500','20 April 2026')">Book Ticket</button>
+</div>
+
+<div class="event-card">
+<img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745">
+<h3>Sunburn Festival</h3>
+<p>Date: 30 December 2026</p>
+<p>Ticket: ₹6000</p>
+<button onclick="openBooking('Sunburn Festival','₹6000','30 December 2026')">Book Ticket</button>
+</div>
+
+<div class="event-card">
+<img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30">
+<h3>Fuji Rock Festival</h3>
+<p>Date: 25 July 2026</p>
+<p>Ticket: ₹5500</p>
+<button onclick="openBooking('Fuji Rock Festival','₹5500','25 July 2026')">Book Ticket</button>
+</div>
+
+<div class="event-card">
+<img src="https://images.unsplash.com/photo-1518972559570-7cc1309f3229">
+<h3>Ultra Korea</h3>
+<p>Date: 12 June 2026</p>
+<p>Ticket: ₹5000</p>
+<button onclick="openBooking('Ultra Korea','₹5000','12 June 2026')">Book Ticket</button>
+</div>
+
+<div class="event-card">
+<img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4">
+<h3>Wanderland Festival</h3>
+<p>Date: 18 May 2026</p>
+<p>Ticket: ₹3500</p>
+<button onclick="openBooking('Wanderland Festival','₹3500','18 May 2026')">Book Ticket</button>
+</div>
+
+<div class="event-card">
+<img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea">
+<h3>ZoukOut Festival</h3>
+<p>Date: 5 December 2026</p>
+<p>Ticket: ₹4200</p>
+<button onclick="openBooking('ZoukOut Festival','₹4200','5 December 2026')">Book Ticket</button>
+</div>
+
+</div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact" class="contact">
+
+<h2>Contact Us</h2>
+
+<form onsubmit="sendMessage(event)">
+<input type="text" placeholder="Your Name" required><br>
+<input type="email" placeholder="Your Email" required><br>
+<textarea placeholder="Your Message" required></textarea><br>
+<button type="submit">Send Message</button>
+</form>
+
+</section>
+
+<!-- BOOKING POPUP -->
+
+<div class="modal" id="bookingModal">
+
+<div class="modal-content">
+
+<span class="close" onclick="closeBooking()">×</span>
+
+<h3>Book Ticket</h3>
+
+<form onsubmit="confirmBooking(event)">
+
+<input type="text" id="eventName" readonly>
+
+<input type="text" id="eventDate" readonly>
+
+<input type="text" id="ticketPrice" readonly>
+
+<input type="text" placeholder="Your Name" required>
+
+<input type="email" placeholder="Email" required>
+
+<button type="submit">Confirm Booking</button>
+
+</form>
+
+</div>
+
+</div>
+
+<footer>
+<p>Eshan B || 23BCAR0074</p>
+</footer>
+
+<script>
+
+function showPage(page){
+document.querySelectorAll("section").forEach(sec=>{
+sec.classList.remove("active")
+})
+document.getElementById(page).classList.add("active")
+}
+
+function openBooking(event,price,date){
+document.getElementById("bookingModal").style.display="flex"
+document.getElementById("eventName").value=event
+document.getElementById("ticketPrice").value="Ticket Price: "+price
+document.getElementById("eventDate").value="Date: "+date
+}
+
+function closeBooking(){
+document.getElementById("bookingModal").style.display="none"
+}
+
+function confirmBooking(e){
+e.preventDefault()
+alert("Ticket booked successfully!")
+closeBooking()
+}
+
+function sendMessage(e){
+e.preventDefault()
+alert("Message sent successfully!")
+}
+
+</script>
+
+</body>
+</html>
+body{
+font-family:Arial;
+margin:0;
+background:#f4f4f4;
+}
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 40px;
+background:#111;
+color:white;
+}
+
+nav a{
+color:white;
+margin-left:20px;
+text-decoration:none;
+}
+
+.hero{
+text-align:center;
+padding:80px;
+background:#ff4c4c;
+color:white;
+}
+
+.btn{
+background:white;
+color:#ff4c4c;
+padding:10px 20px;
+text-decoration:none;
+border-radius:5px;
+}
+
+.events{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+padding:40px;
+}
+
+.event-card{
+background:white;
+width:260px;
+margin:15px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+text-align:center;
+overflow:hidden;
+}
+
+.event-card img{
+width:100%;
+height:180px;
+object-fit:cover;
+}
+
+.event-card button{
+background:#ff4c4c;
+color:white;
+border:none;
+padding:10px 15px;
+margin-bottom:15px;
+border-radius:5px;
+cursor:pointer;
+}
+
+.contact{
+text-align:center;
+padding:50px;
+}
+
+.contact input,
+.contact textarea{
+width:300px;
+padding:10px;
+margin:10px;
+}
+
+.contact button{
+padding:10px 20px;
+background:#ff4c4c;
+color:white;
+border:none;
+}
+
+footer{
+background:#111;
+color:white;
+text-align:center;
+padding:20px;
+margin-top:30px;
+}
+function registerEvent(eventName){
+
+alert("Ticket booked for: " + eventName)
+
+}
+
+const form = document.getElementById("contactForm")
+
+if(form){
+
+form.addEventListener("submit",function(e){
+
+e.preventDefault()
+
+alert("Message sent successfully!")
+
+})
+
+}
